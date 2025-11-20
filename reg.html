@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalog Register</title>
+    <style>
+        body {
+            background-color: pink;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff0f5;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 15px;
+        }
+
+        input, select {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: tomato;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: darkred;
+        }
+
+        .link {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .link a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="registerForm" onsubmit="return validateForm()">
+            <fieldset>
+                <legend style="color:tomato;"><h3>Create Account</h3></legend>
+
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" pattern="[A-Za-z\s]+" title="Only letters and spaces allowed" placeholder="First and last name" required><br>
+
+                <label for="countryCode">Mobile No:</label>
+                <select id="countryCode" required>
+                    <option value="+91">+91 (India)</option>
+                    <option value="+61">+61 (Australia)</option>
+                    <option value="+32">+32 (Belgium)</option>
+                    <option value="+20">+20 (Egypt)</option>
+                    <option value="+33">+33 (France)</option>
+                    <option value="+81">+81 (Japan)</option>
+                    <option value="+64">+64 (New Zealand)</option>
+                </select>
+
+                <input type="text" id="mobile" name="mobile" pattern="\d{10}" maxlength="10" title="Enter 10-digit mobile number" placeholder="Mobile Number" required><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" minlength="6" maxlength="8" placeholder="Enter password" required><br>
+
+                <button type="submit" class="submit-btn">Submit</button>
+
+                <div class="link">
+                    Already have an account? <a href="SIGNUP.html">Sign In</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <script>
+        function validateForm(){
+ const name = document.getElementById("name").value.trim();
+            const mobile = document.getElementById("mobile").value;
+            const password = document.getElementById("password").value;
+
+            if (name === "" || mobile === "" || password === "") {
+                alert("All fields are required!");
+                return false;
+            }
+
+            if (!/^\d{10}$/.test(mobile)) {
+                alert("Please enter a valid 10-digit mobile number.");
+                return false;
+            }
+
+            if (password.length < 6 || password.length > 8) {
+                alert("Password must be 6 to 8 characters long.");
+                return false;
+            }
+
+            alert("Account created successfully!");
+            return true; // Allow form submission
+        }
+    </script>
+</body>
+</html>
